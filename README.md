@@ -73,5 +73,5 @@ Create EJS templates for signup, login, and home pages.
 Run the App
 
 Start the server with nodemon.
-Access your app at http://localhost:3000.
+Access your app at
 This simple app is extendable with features like URL shortening, analytics, and security layers to meet future demands. Would you like to dive deeper into the code or discuss additional features?
