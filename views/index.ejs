@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Short URL Generator</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div class="container">
+    <h1>Short URL Generator</h1>
+    <p>Enter your long URL below to generate a shorter version.</p>
+    <p>Let me know if you’d like help designing the input field or implementing this functionality!</p>
+    <form class="url-form" action="http://localhost:5000/api/v1/generate/shortUrl" method="post">
+      <input type="text" placeholder="Paste your URL here..." class="url-input" name="url"
+        value="<%= locals.longURL %>">
+      <button type="submit" class="generate-btn">Generate</button>
+    </form>
+
+    <% if(locals.shortUrl){ %>
+      <div class="short-url">
+        <p>Short URL:</p>
+        <div class="result">
+          <a href="<%= locals.shortUrl %>" target="_blank">
+            <%= locals.shortUrl %>
+          </a>
+          <button id="copyButton" onclick="copyShortLick()" class="copy">Copy</button>
+        </div>
+      </div>
+      <button onclick="backtoHome()" class="back_home">Generate new url</button>
+      <% } %>
+
+  </div>
+
+  <script>
+    function copyShortLick() {
+      const shortUrl = document.querySelector('.result a').href;
+      navigator.clipboard.writeText(shortUrl).then(function () {
+        copyButton.innerHTML = "Copied!"; 
+        setTimeout(() => {
+          copyButton.innerHTML = "Copy"; 
+        }, 2000);
+      })
+    };
+
+    function backtoHome() {
+      window.location.pathname = "/"
+    }
+  </script>
+
+</body>
+
+</html>
